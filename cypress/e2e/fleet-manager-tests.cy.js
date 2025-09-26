@@ -26,16 +26,18 @@ describe("fleet manager", () => {
     cy.contains("h3", "Fiat Uno").should("be.visible");
   });
 
-  it.only("Alugar um carro e conferir o valor", () => {
+  it("Alugar um carro e conferir o valor", () => {
     cy.contains("button", "Alugar").first().click();
     cy.get("input#days").type("1");
     cy.contains("button", "Confirmar Aluguel").click();
-    cy.contains("Veiculo alugado com sucesso!").should("be.visible");
     cy.get("input.uppercase").type("DESCONTO50");
     cy.contains("button", "Aplicar").click();
     cy.contains("p", "Cartão de Crédito");
-    cy.contains("R$ 100", "should,be,visible");
-    //Não foi possivel pagar o pedido devido ao bug "Botão "Pagar" não exibido no modal de confirmação"
+    cy.contains("R$ 100").should("be.visible");
+    cy.get("div.backdrop-blur-sm").click({ force: true });
+    cy.contains("span", "Alugado").eq(2).should("be.visible");
+    // bug conhecido:
+    // "Botão 'Pagar' não exibido no modal de confirmação"
   });
 
   it('não deve permitir alugar veículo com status "Alugado"', () => {

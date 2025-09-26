@@ -12,3 +12,4 @@
 ## Acessibilidade / Experiência do Usuário
 
 - Adicionar **modo escuro**, melhorando a visualização em ambientes com pouca luz e ajudando usuários com sensibilidade à claridade.
+- As mensagens de sucesso e erro poderiam ser mais aaprentes para o usuário
